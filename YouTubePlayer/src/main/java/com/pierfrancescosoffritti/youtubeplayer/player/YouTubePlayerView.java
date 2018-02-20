@@ -4,6 +4,7 @@ import android.arch.lifecycle.Lifecycle;
 import android.arch.lifecycle.LifecycleObserver;
 import android.arch.lifecycle.OnLifecycleEvent;
 import android.content.Context;
+import android.content.Intent;
 import android.content.IntentFilter;
 import android.net.ConnectivityManager;
 import android.support.annotation.NonNull;
@@ -137,6 +138,10 @@ public class YouTubePlayerView extends FrameLayout implements NetworkReceiver.Ne
 
     public void toggleFullScreen() {
         fullScreenHelper.toggleFullScreen(this);
+    }
+
+    public void toggleFullScreenElias() {
+        getContext().startActivity(new Intent(this.getContext(), FullScreenActivity.class));
     }
 
     public boolean addFullScreenListener(@NonNull YouTubePlayerFullScreenListener fullScreenListener) {

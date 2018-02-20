@@ -238,6 +238,11 @@ public class DefaultPlayerUIController implements PlayerUIController, View.OnCli
     }
 
     private void onFullScreenButtonPressed() {
+
+
+
+
+
         if(onFullScreenButtonListener == null)
             youTubePlayerView.toggleFullScreen();
         else
