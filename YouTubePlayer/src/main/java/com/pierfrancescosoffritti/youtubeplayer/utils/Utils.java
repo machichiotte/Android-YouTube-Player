@@ -18,4 +18,11 @@ public class Utils {
         NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
         return (networkInfo != null && networkInfo.isConnected());
     }
+
+    public static float stringToSeconds(String time) {
+        String[] units = time.split(":"); //will break the string up into an array
+        int minutes = Integer.parseInt(units[0]); //first element
+        int seconds = Integer.parseInt(units[1]); //second element
+        return 60 * minutes + seconds;
+    }
 }

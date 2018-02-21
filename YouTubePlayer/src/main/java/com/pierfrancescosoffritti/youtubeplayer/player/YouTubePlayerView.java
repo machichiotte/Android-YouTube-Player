@@ -10,6 +10,7 @@ import android.net.ConnectivityManager;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.WebView;
@@ -27,7 +28,7 @@ import com.pierfrancescosoffritti.youtubeplayer.utils.Utils;
 public class YouTubePlayerView extends FrameLayout implements NetworkReceiver.NetworkListener, LifecycleObserver {
 
     @NonNull private final WebViewYouTubePlayer youTubePlayer;
-    @NonNull private final DefaultPlayerUIController playerUIControls;
+    @NonNull public final DefaultPlayerUIController playerUIControls;
 
     @NonNull private final NetworkReceiver networkReceiver;
     @NonNull private final PlaybackResumer playbackResumer;
@@ -141,7 +142,9 @@ public class YouTubePlayerView extends FrameLayout implements NetworkReceiver.Ne
     }
 
     public void toggleFullScreenElias() {
-        getContext().startActivity(new Intent(this.getContext(), FullScreenActivity.class));
+        Intent fullScreenIntent = new Intent(this.getContext(), FullScreenActivity.class);
+
+        getContext().startActivity(fullScreenIntent);
     }
 
     public boolean addFullScreenListener(@NonNull YouTubePlayerFullScreenListener fullScreenListener) {

@@ -160,6 +160,18 @@
                 android:padding="8dp"
                 android:src="@drawable/ic_fullscreen_24dp" />
 
+            <ImageView
+                android:id="@+id/back_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/background_item_selected"
+                android:clickable="true"
+                android:contentDescription="@string/full_screen_button"
+                android:focusable="true"
+                android:padding="8dp"
+                android:visibility="gone"
+                android:src="@drawable/ic_fullscreen_exit_24dp" />
+
         </LinearLayout>
 
         <SeekBar
