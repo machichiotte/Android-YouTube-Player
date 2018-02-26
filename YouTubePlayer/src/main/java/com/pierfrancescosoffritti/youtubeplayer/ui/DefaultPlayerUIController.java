@@ -3,6 +3,7 @@ package com.pierfrancescosoffritti.youtubeplayer.ui;
 import android.animation.Animator;
 import android.app.Activity;
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Handler;
@@ -451,7 +452,6 @@ public class DefaultPlayerUIController implements PlayerUIController, View.OnCli
         fullScreenButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
                 Intent fullScreenIntent = new Intent(view.getContext(), FullScreenActivity.class);
                 fullScreenIntent.putExtra("VIDEO_ID", videoId);
                 fullScreenIntent.putExtra("VIDEO_TIME", Utils.stringToSeconds(videoCurrentTime.getText().toString()));
@@ -463,6 +463,8 @@ public class DefaultPlayerUIController implements PlayerUIController, View.OnCli
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                ((Activity) view.getContext()).setRequestedOrientation(
+                        ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
                 ((Activity) view.getContext()).finish();
             }
         });
