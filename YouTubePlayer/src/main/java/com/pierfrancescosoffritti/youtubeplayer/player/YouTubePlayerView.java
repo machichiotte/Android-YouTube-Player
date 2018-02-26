@@ -141,12 +141,6 @@ public class YouTubePlayerView extends FrameLayout implements LifecycleObserver 
         fullScreenHelper.toggleFullScreen(this);
     }
 
-    public void toggleFullScreenElias() {
-        Intent fullScreenIntent = new Intent(this.getContext(), FullScreenActivity.class);
-
-        getContext().startActivity(fullScreenIntent);
-    }
-
     public boolean addFullScreenListener(@NonNull YouTubePlayerFullScreenListener fullScreenListener) {
         return fullScreenHelper.addFullScreenListener(fullScreenListener);
     }

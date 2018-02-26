@@ -36,12 +36,10 @@ public class FullScreenActivity extends Activity {
         youTubePlayerView.initialize(new YouTubePlayerInitListener() {
                                          @Override
                                          public void onInitSuccess(final YouTubePlayer youTubePlayer) {
-
                                              youTubePlayer.addListener(new AbstractYouTubePlayerListener() {
                                                      @Override
                                                      public void onReady() {
                                                          FullScreenActivity.this.initializedYouTubePlayer = youTubePlayer;
-
                                                          youTubePlayer.loadVideo(video_id, video_time);
                                                      }
                                                  });
@@ -55,6 +53,13 @@ public class FullScreenActivity extends Activity {
     @Override
     public void onPause() {
         super.onPause();
+        if (initializedYouTubePlayer != null)
+            initializedYouTubePlayer.pause();
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
         if (initializedYouTubePlayer != null)
             initializedYouTubePlayer.pause();
     }
