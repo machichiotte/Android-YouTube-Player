@@ -10,7 +10,6 @@ import android.net.ConnectivityManager;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.WebView;
@@ -22,18 +21,23 @@ import com.pierfrancescosoffritti.youtubeplayer.player.playerUtils.PlaybackResum
 import com.pierfrancescosoffritti.youtubeplayer.ui.DefaultPlayerUIController;
 import com.pierfrancescosoffritti.youtubeplayer.ui.PlayerUIController;
 import com.pierfrancescosoffritti.youtubeplayer.utils.Callable;
-import com.pierfrancescosoffritti.youtubeplayer.utils.NetworkReceiver;
 import com.pierfrancescosoffritti.youtubeplayer.utils.Utils;
 
-public class YouTubePlayerView extends FrameLayout implements NetworkReceiver.NetworkListener, LifecycleObserver {
+//public class YouTubePlayerView extends FrameLayout implements NetworkReceiver.NetworkListener, LifecycleObserver {
+public class YouTubePlayerView extends FrameLayout implements LifecycleObserver {
 
-    @NonNull private final WebViewYouTubePlayer youTubePlayer;
-    @NonNull public final DefaultPlayerUIController playerUIControls;
+    @NonNull
+    private final WebViewYouTubePlayer youTubePlayer;
+    @NonNull
+    public final DefaultPlayerUIController playerUIControls;
 
-    @NonNull private final NetworkReceiver networkReceiver;
-    @NonNull private final PlaybackResumer playbackResumer;
-    @NonNull private final FullScreenHelper fullScreenHelper;
-    @Nullable private Callable asyncInitialization;
+    // @NonNull private final NetworkReceiver networkReceiver;
+    @NonNull
+    private final PlaybackResumer playbackResumer;
+    @NonNull
+    private final FullScreenHelper fullScreenHelper;
+    @Nullable
+    private Callable asyncInitialization;
 
     public YouTubePlayerView(Context context) {
         this(context, null);
@@ -53,7 +57,7 @@ public class YouTubePlayerView extends FrameLayout implements NetworkReceiver.Ne
         playerUIControls = new DefaultPlayerUIController(this, youTubePlayer, playerControlsView);
 
         playbackResumer = new PlaybackResumer();
-        networkReceiver = new NetworkReceiver(this);
+        //etworkReceiver = new NetworkReceiver(this);
         fullScreenHelper = new FullScreenHelper();
 
         addFullScreenListener(playerUIControls);
@@ -62,22 +66,18 @@ public class YouTubePlayerView extends FrameLayout implements NetworkReceiver.Ne
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         // if height == wrap content make the view 16:9
-        if(getLayoutParams().height == ViewGroup.LayoutParams.WRAP_CONTENT) {
+        if (getLayoutParams().height == ViewGroup.LayoutParams.WRAP_CONTENT) {
             int sixteenNineHeight = View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(widthMeasureSpec) * 9 / 16, View.MeasureSpec.EXACTLY);
             super.onMeasure(widthMeasureSpec, sixteenNineHeight);
         } else
             super.onMeasure(widthMeasureSpec, heightMeasureSpec);
     }
 
-    /**
-     * Initialize the player
-     * @param youTubePlayerInitListener lister for player init events
-     * @param handleNetworkEvents if <b>true</b> a broadcast receiver will be registered.<br/>If <b>false</b> you should handle network events with your own broadcast receiver. See {@link YouTubePlayerView#onNetworkAvailable()} and {@link YouTubePlayerView#onNetworkUnavailable()}
-     */
-    public void initialize(@NonNull final YouTubePlayerInitListener youTubePlayerInitListener, boolean handleNetworkEvents) {
-        if(handleNetworkEvents)
-            getContext().registerReceiver(networkReceiver, new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION));
 
+    public void initialize(@NonNull final YouTubePlayerInitListener youTubePlayerInitListener, boolean handleNetworkEvents) {
+       /* if (handleNetworkEvents)
+            getContext().registerReceiver(networkReceiver, new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION));
+*/
         asyncInitialization = new Callable() {
             @Override
             public void call() {
@@ -91,7 +91,7 @@ public class YouTubePlayerView extends FrameLayout implements NetworkReceiver.Ne
             }
         };
 
-        if(Utils.isOnline(getContext()))
+        if (Utils.isOnline(getContext()))
             asyncInitialization.call();
     }
 
@@ -102,12 +102,12 @@ public class YouTubePlayerView extends FrameLayout implements NetworkReceiver.Ne
     @OnLifecycleEvent(Lifecycle.Event.ON_DESTROY)
     public void release() {
         youTubePlayer.destroy();
-        try {
+        /*try {
             getContext().unregisterReceiver(networkReceiver);
         } catch (Exception ignore) {
-        }
+        }*/
     }
-
+/*
     @Override
     public void onNetworkAvailable() {
         if(asyncInitialization != null)
@@ -118,7 +118,7 @@ public class YouTubePlayerView extends FrameLayout implements NetworkReceiver.Ne
 
     @Override
     public void onNetworkUnavailable() {
-    }
+    } */
 
     @NonNull
     public PlayerUIController getPlayerUIController() {
