@@ -142,6 +142,7 @@
                 android:id="@+id/youtube_button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:visibility="gone"
                 android:background="@drawable/background_item_selected"
                 android:clickable="true"
                 android:contentDescription="@string/open_video_in_youtube"

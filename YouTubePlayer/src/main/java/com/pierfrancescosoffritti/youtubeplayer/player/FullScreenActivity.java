@@ -37,20 +37,12 @@ public class FullScreenActivity extends Activity {
                                              youTubePlayer.addListener(new AbstractYouTubePlayerListener() {
                                                      @Override
                                                      public void onReady() {
-                                                         //FullScreenActivity.this.initializedYouTubePlayer = initializedYouTubePlayer;
-
                                                          youTubePlayer.loadVideo(video_id, video_time);
-                                                         //setVideoTitle(youTubePlayerView.getPlayerUIController(), videoIds[0]);
                                                      }
                                                  });
                                          }
 
-
-
-                //addFullScreenListenerToPlayer(initializedYouTubePlayer);
-                //initButtonClickListener(initializedYouTubePlayer);
-
-    }, true);
+    }, false);
 
         youTubePlayerView.playerUIControls.hideFullScreen();
     }
