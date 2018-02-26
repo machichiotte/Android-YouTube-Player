@@ -2,6 +2,7 @@ package com.pierfrancescosoffritti.youtubeplayer.player;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.util.Log;
@@ -51,21 +52,10 @@ public class FullScreenActivity extends Activity {
     }
 
     @Override
-    public void onPause() {
-
-        if (initializedYouTubePlayer != null)
-            initializedYouTubePlayer.pause();
-
-        super.onPause();
-    }
-
-    @Override
-    public void onDestroy() {
-
-        if (initializedYouTubePlayer != null)
-            initializedYouTubePlayer.pause();
-
-        super.onDestroy();
+    public void onBackPressed() {
+        this.setRequestedOrientation(
+                ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+        finish();
     }
 }
 
