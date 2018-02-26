@@ -11,8 +11,7 @@
 
         <activity
             android:name=".player.FullScreenActivity"
-            android:configChanges="orientation"
-            android:screenOrientation="landscape" />
+            android:configChanges="orientation" />
 
     </application>
 

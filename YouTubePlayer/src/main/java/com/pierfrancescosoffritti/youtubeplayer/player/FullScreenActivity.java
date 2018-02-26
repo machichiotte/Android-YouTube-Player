@@ -53,8 +53,10 @@ public class FullScreenActivity extends Activity {
 
     @Override
     public void onBackPressed() {
-        this.setRequestedOrientation(
-                ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+        if (this.getRequestedOrientation() == ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE) {
+            this.setRequestedOrientation(
+                    ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+        }
         finish();
     }
 }

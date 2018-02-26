@@ -463,8 +463,11 @@ public class DefaultPlayerUIController implements PlayerUIController, View.OnCli
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ((Activity) view.getContext()).setRequestedOrientation(
-                        ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+                if (((Activity) view.getContext()).getRequestedOrientation() == ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE) {
+                    ((Activity) view.getContext()).setRequestedOrientation(
+                            ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+                }
+
                 ((Activity) view.getContext()).finish();
             }
         });
