@@ -32,7 +32,7 @@ public class FullScreenActivity extends Activity {
         final float video_time = getIntent().getExtras().getFloat("VIDEO_TIME");
 
         YouTubePlayerView youTubePlayerView = findViewById(R.id.ytp);
-
+        youTubePlayerView.playerUIControls.hideFullScreen();
         youTubePlayerView.initialize(new YouTubePlayerInitListener() {
                                          @Override
                                          public void onInitSuccess(final YouTubePlayer youTubePlayer) {
@@ -47,21 +47,25 @@ public class FullScreenActivity extends Activity {
 
     }, false);
 
-        youTubePlayerView.playerUIControls.hideFullScreen();
+
     }
 
     @Override
     public void onPause() {
-        super.onPause();
+
         if (initializedYouTubePlayer != null)
             initializedYouTubePlayer.pause();
+
+        super.onPause();
     }
 
     @Override
     public void onDestroy() {
-        super.onDestroy();
+
         if (initializedYouTubePlayer != null)
             initializedYouTubePlayer.pause();
+
+        super.onDestroy();
     }
 }
 
