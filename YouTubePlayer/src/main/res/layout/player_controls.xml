@@ -142,7 +142,7 @@
                 android:id="@+id/youtube_button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:visibility="gone"
+                android:visibility="visible"
                 android:background="@drawable/background_item_selected"
                 android:clickable="true"
                 android:contentDescription="@string/open_video_in_youtube"
@@ -159,6 +159,7 @@
                 android:contentDescription="@string/full_screen_button"
                 android:focusable="true"
                 android:padding="8dp"
+                android:visibility="gone"
                 android:src="@drawable/ic_fullscreen_24dp" />
 
             <ImageView
