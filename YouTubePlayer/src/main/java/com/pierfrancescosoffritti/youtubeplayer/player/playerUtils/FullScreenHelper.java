@@ -20,7 +20,7 @@ public class FullScreenHelper {
     }
 
     public void enterFullScreen(@NonNull View view) {
-        if(isFullScreen)
+        if (isFullScreen)
             return;
 
         ViewGroup.LayoutParams viewParams = view.getLayoutParams();
@@ -30,12 +30,12 @@ public class FullScreenHelper {
 
         isFullScreen = true;
 
-        for(YouTubePlayerFullScreenListener fullScreenListener : fullScreenListeners)
+        for (YouTubePlayerFullScreenListener fullScreenListener : fullScreenListeners)
             fullScreenListener.onYouTubePlayerEnterFullScreen();
     }
 
     public void exitFullScreen(@NonNull View view) {
-        if(!isFullScreen)
+        if (!isFullScreen)
             return;
 
         ViewGroup.LayoutParams viewParams = view.getLayoutParams();
@@ -45,14 +45,14 @@ public class FullScreenHelper {
 
         isFullScreen = false;
 
-        for(YouTubePlayerFullScreenListener fullScreenListener : fullScreenListeners)
+        for (YouTubePlayerFullScreenListener fullScreenListener : fullScreenListeners)
             fullScreenListener.onYouTubePlayerExitFullScreen();
     }
 
     public void toggleFullScreen(@NonNull View view) {
-        if(isFullScreen)
+        if (isFullScreen) {
             exitFullScreen(view);
-        else
+        } else
             enterFullScreen(view);
     }
 
