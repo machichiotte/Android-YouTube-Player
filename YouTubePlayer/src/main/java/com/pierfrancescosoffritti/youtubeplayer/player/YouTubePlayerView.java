@@ -23,11 +23,10 @@ import com.pierfrancescosoffritti.youtubeplayer.ui.PlayerUIController;
 import com.pierfrancescosoffritti.youtubeplayer.utils.Callable;
 import com.pierfrancescosoffritti.youtubeplayer.utils.Utils;
 
-//public class YouTubePlayerView extends FrameLayout implements NetworkReceiver.NetworkListener, LifecycleObserver {
 public class YouTubePlayerView extends FrameLayout implements LifecycleObserver {
 
     @NonNull
-    private final WebViewYouTubePlayer youTubePlayer;
+    public final WebViewYouTubePlayer youTubePlayer;
     @NonNull
     public final DefaultPlayerUIController playerUIControls;
 
